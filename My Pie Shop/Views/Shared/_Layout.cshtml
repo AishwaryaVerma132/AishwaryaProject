@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - My_Pie_Shop </title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/~/My_Pie_Shop.styles.css" asp-append-version="true" />
+ 
+</head>
+<body>
+    <style>
+         body{
+            background-image:url("/Images/PieBG.webp");
+        }
+    </style>
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark text-light border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <span class="logo"> <a asp-controller="Home" asp-action="Index"><img src="~/Images/PiePleasure_Logo.png" alt="" width="70" height="70" class="d-inline-block align-text-top"></a> </span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="PiesOfTheWeek">Home</a></h2>
+                        </li>
+                        <li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="List">Pies</a></h2>
+                        </li>
+                        <li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="FruitPieList">Fruit Pies</a></h2>
+                        </li>
+                        <li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="CheeseCakeList">Cheese Cake</a></h2>
+                        </li>
+                        <li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="SeasonalPieList">Seasonal Pies</a></h2>
+                        </li>
+                        <li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></h2>
+                        </li>
+                        <li class="nav-item">
+                                     <partial name="_LoginPartial">
+                        </li>
+
+                    </ul>
+                    @await Component.InvokeAsync("CategoryMenu")
+                    
+                </div>
+                
+                @*<div class="dropdown">
+                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
+                 aria-expanded="false">Dropdown button</button>
+                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                 <a class="dropdown-item" href="#">Action</a>
+                 <a class="dropdown-item" href="#">Another action</a>
+                 <a class="dropdown-item" href="#">Something else here</a>
+                 </div>
+                 </div>*@
+
+                @*<div class="dropdown space">
+                    <li class=" btncolor text-light btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Category
+                    </li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="List" >All pies</a></li>
+                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="FruitPieList" >Fruit pies</a></li>
+                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="CheeseCakeList" >Cheese cakes</a></li>
+                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="SeasonalPieList" >Seasonal pies</a></li>
+                    </ul>
+                </div>*@
+
+                @*<div class="dropdown space">
+                    <li class="btncolor text-light btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      Category
+                    </li>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                      <li><a class="dropdown-item" asp-controller="Category" asp-action="Category1"  >Fruit pies</a></li>
+                      <li><a class="dropdown-item" asp-controller="Category" asp-action="Category2" >Cheese cakes</a></li>
+                      <li><a class="dropdown-item" asp-controller="Category" asp-action="Category3" >Seasonal pies</a></li>
+                    </ul>
+                </div>
+*@
+
+            </div>
+        </nav>
+   
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
