@@ -1,8 +1,7 @@
-﻿namespace My_Pie_Shop.Models
+﻿namespace PieShopAPI.Models
 {
     public interface IPieRepository
     {
-        //middle page
         IEnumerable<Pie> AllPies { get; }
 
         //Home Page
@@ -10,6 +9,10 @@
 
         //Details page
         Pie GetPieById(int pieId);
-        
+        IEnumerable<Pie> FruitPie { get; }
+
+        IEnumerable<Pie> CheeseCake { get; }
+
+        IEnumerable<Pie> SeasonalPie { get; }
     }
 }

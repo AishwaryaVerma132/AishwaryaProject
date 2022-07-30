@@ -12,7 +12,8 @@ namespace My_Pie_Shop.Components
             this.categoryRepository = categoryRepository;
         }
 
-        // Action method for the categories
+        // Action method for the categories 
+        //View Component has only one action method and one purpose , Invoke() , IViewComponentResult
         public IViewComponentResult Invoke()
         {
             var categoryItem = this.categoryRepository.AllCategories;
