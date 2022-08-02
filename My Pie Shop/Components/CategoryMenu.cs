@@ -14,10 +14,10 @@ namespace My_Pie_Shop.Components
 
         // Action method for the categories 
         //View Component has only one action method and one purpose , Invoke() , IViewComponentResult
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var categoryItem = this.categoryRepository.AllCategories;
-            return View(categoryItem);
+            var categoryItem = PieAPIData.GetCategoryApiData("https://localhost:7154/Pie/AllCategories");
+            return View(categoryItem.Result);
         }
     }
 }

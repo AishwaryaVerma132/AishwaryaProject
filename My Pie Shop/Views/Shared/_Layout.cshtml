@@ -26,7 +26,7 @@
                 </button>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                   <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="PiesOfTheWeek">Home</a></h2>
                         </li>
@@ -37,56 +37,34 @@
                             <h2><a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></h2>
                         </li>
                         <li class="nav-item">
-                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="MiniPie">Mini Pies</a></h2>
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="MiniPie">Mini Pies List</a></h2>
                         </li>
+                        <li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="AllCategories">All Categories</a></h2>
+                        </li>
+                                    
                         <li class="nav-item">
                                      <partial name="_LoginPartial">
                         </li>
+                  </ul>
 
-                    </ul>
+                  <div class="dropdown">
+     
+                         <li class="btncolor text-light btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          Sort By Price
+                         </li>
+    
+                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" asp-controller="Pie" asp-action="ListAscending" >Ascending</a></li>
+                            <li><a class="dropdown-item" asp-controller="Pie" asp-action="ListDescending" >Descending</a></li>
+         
+                           </ul>                       
+                     </div>         
                     @await Component.InvokeAsync("CategoryMenu")
-
                     
                 </div>
-                
-                @*<div class="dropdown">
-                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" 
-                 aria-expanded="false">Dropdown button</button>
-                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                 <a class="dropdown-item" href="#">Action</a>
-                 <a class="dropdown-item" href="#">Another action</a>
-                 <a class="dropdown-item" href="#">Something else here</a>
-                 </div>
-                 </div>*@
-
-                @*<div class="dropdown space">
-                    <li class=" btncolor text-light btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      Category
-                    </li>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="List" >All pies</a></li>
-                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="FruitPieList" >Fruit pies</a></li>
-                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="CheeseCakeList" >Cheese cakes</a></li>
-                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="SeasonalPieList" >Seasonal pies</a></li>
-                    </ul>
-                </div>*@
-
-               @* <div class="dropdown space">
-                    <li class="btncolor text-light btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      Category
-                    </li>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-                      <li><a class="dropdown-item" asp-controller="Category" asp-action="Category1"  >Fruit pies</a></li>
-                      <li><a class="dropdown-item" asp-controller="Category" asp-action="Category2" >Cheese cakes</a></li>
-                      <li><a class="dropdown-item" asp-controller="Category" asp-action="Category3" >Seasonal pies</a></li>
-                    </ul>
-                </div>*@
-
-
             </div>
-        </nav>
-   
+        </nav>   
     </header>
 
     <div class="container">

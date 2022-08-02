@@ -9,10 +9,10 @@
 
         //Details page
         Pie GetPieById(int pieId);
-        IEnumerable<Pie> FruitPie { get; }
 
-        IEnumerable<Pie> CheeseCake { get; }
-
-        IEnumerable<Pie> SeasonalPie { get; }
+        Pie InsertPie(Pie pie);
+        Pie UpdatePie(Pie pie);
+        Pie DeletePie(int PieID);
+        
     }
 }

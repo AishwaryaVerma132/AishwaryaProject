@@ -10,6 +10,8 @@
 
         //Details page
         Pie GetPieById(int pieId);
-        
+        int CreatePie(Pie pie);
+        int UpdatePie(Pie pie);
+        int RemovePie(Pie pie);
     }
 }

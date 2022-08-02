@@ -7,6 +7,6 @@
         public string Description { get; set; }
 
         // Child Reference
-        public List<Pie> Pies { get; set; }
+       // public List<Pie> Pies { get; set; }
     }
 }

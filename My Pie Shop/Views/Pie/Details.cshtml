@@ -22,5 +22,7 @@
 </div>
 <div>
     <a asp-action="PiesOfTheWeek" >Home</a> |
-    <a asp-action="List">All Pies</a>
+    <a asp-action="List">All Pies</a> |
+    <a asp-action="Edit" asp-route-id="@Model?.PieId">Edit</a> |
+    <a asp-controller="Pie" asp-action="Remove"  asp-route-id="@Model?.PieId"> Remove Pie</a>
 </div>
