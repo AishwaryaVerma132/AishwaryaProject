@@ -18,15 +18,22 @@ namespace My_Pie_Shop.Controllers
 
         private readonly IConfiguration configuration;
 
+        private readonly IHttpContextAccessor httpContextAccessor;
+
+        private readonly ICartRepository _cartRepository;
+
+
         string baseAddress;
 
-        public PieController(IPieRepository pieRepository, IMapper mapper , IConfiguration configuration, ICategoryRepository categoryRepository)
+        public PieController(IPieRepository pieRepository, IMapper mapper , IConfiguration configuration, ICategoryRepository categoryRepository, IHttpContextAccessor httpContextAccessor, ICartRepository cartRepository)
         {
             this._pieRepository = pieRepository;
             this.mapper = mapper;
             this.configuration = configuration;
             this.baseAddress = configuration.GetValue<string>("BaseAddress");
-            _categoryRepository = categoryRepository;
+            this._categoryRepository = categoryRepository;
+            this.httpContextAccessor = httpContextAccessor;
+            this._cartRepository = cartRepository;
         }
 
         private IEnumerable<Pie> GetAllPies()
@@ -41,7 +48,7 @@ namespace My_Pie_Shop.Controllers
 
             if (CategoryId > 0)
             {
-                pies = GetAllPies().Where(pie => pie.CategoryId == CategoryId);
+                pies = GetAllPies().Where(pie => pie.CategoryId == CategoryId);               
                 pieListViewModel.CurrentCategory = "Category";
             }
             else
@@ -218,8 +225,26 @@ namespace My_Pie_Shop.Controllers
         [Authorize]
         public IActionResult AddToShoppingCart(int id)
         {
-            var GetPie = _pieRepository.GetPieById(id);
-            return View(GetPie);
+            var user = httpContextAccessor.HttpContext.User.Identity.Name;
+            var GetPie = _pieRepository.AllPies.FirstOrDefault(c => c.PieId == id);
+            var CartItems = _cartRepository.AllOrders.SingleOrDefault(u => u.OrderId == user && u.PieId == id);
+            if(CartItems == null)
+            {
+                CartItems = new Cart();
+                CartItems.PieId = GetPie.PieId;
+                CartItems.PieName = GetPie.Name;
+                CartItems.PiePrice = GetPie.Price;
+                CartItems.OrderId = user;
+                CartItems.Quantity = 1;
+               var Order = _cartRepository.AddOrder(CartItems);
+              
+            }
+            else
+            {
+                CartItems.Quantity++;
+                var Order = _cartRepository.UpdateOrder(CartItems);               
+            }
+            return RedirectToAction("List");
         }
     }
 }

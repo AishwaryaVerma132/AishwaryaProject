@@ -222,7 +222,7 @@ namespace PieShopAPI.Controllers
                 var category = this._categoryRepository.AllCategories.FirstOrDefault(pie => pie.CategoryId == CategoryID);
                 if (category == null)
                 {
-                    return BadRequest("Pie ID Not Found");
+                    return BadRequest("Category ID Not Found");
                 }
                 var DeletingPie = this._categoryRepository.DeleteCategory(CategoryID);
                 return Ok(DeletingPie);

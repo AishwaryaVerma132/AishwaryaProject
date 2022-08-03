@@ -4,7 +4,6 @@
     {
         //middle page
         IEnumerable<Pie> AllPies { get; }
-
         //Home Page
         IEnumerable<Pie> PiesOfTheWeek { get; }
 
