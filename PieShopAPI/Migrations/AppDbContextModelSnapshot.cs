@@ -272,17 +272,12 @@ namespace PieShopAPI.Migrations
             modelBuilder.Entity("PieShopAPI.Models.Pie", b =>
                 {
                     b.HasOne("PieShopAPI.Models.Category", "Category")
-                        .WithMany("Pies")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("PieShopAPI.Models.Category", b =>
-                {
-                    b.Navigation("Pies");
                 });
 #pragma warning restore 612, 618
         }

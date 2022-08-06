@@ -13,12 +13,16 @@ namespace My_Pie_Shop.Models
 
 
         // All Pies Page
-        public IEnumerable<Pie> AllPies => appDbContext.Pies;
-        //;
+        public IEnumerable<Pie> AllPies
+        {
+            get
+            {
+                return appDbContext.Pies.Include(c => c.Category);
+            }
+        }                  
 
         // Home Page
-        public IEnumerable<Pie> PiesOfTheWeek => appDbContext.Pies.Where(pie => pie.IsPieOfTheWeek);
-        //Include(c => c.Category);
+        public IEnumerable<Pie> PiesOfTheWeek => appDbContext.Pies.Where(pie => pie.IsPieOfTheWeek).Include(c => c.Category);
 
         public int CreatePie(Pie pie)
         {

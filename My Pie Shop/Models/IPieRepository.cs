@@ -6,7 +6,6 @@
         IEnumerable<Pie> AllPies { get; }
         //Home Page
         IEnumerable<Pie> PiesOfTheWeek { get; }
-
         //Details page
         Pie GetPieById(int pieId);
         int CreatePie(Pie pie);

@@ -1,4 +1,4 @@
-﻿<h1 class="display-5">Short Description</h1>
+﻿<h1 class="display-5">Short Description Of All Pies</h1>
 
 @model IEnumerable<My_Pie_Shop.Models.PieMini>
 <hr />
@@ -7,19 +7,13 @@
     @foreach (var pie in Model)
     {
             <div class="col-sm-4 col-lg-4 col-md-4">
-                <div class="thumbnail spacing">
-                    @*<a asp-controller="Pie" asp-action="Details" asp-route-id="@pie.PieId">
-                        <img src="@pie.ImageThumbnailUrl" class="sstyle rounded">
-                    </a>*@
-                    
+                <div class="thumbnail spacing">                                  
                     <div class="caption">
                         <h3>
                             <a asp-controller="Pie" asp-action="Details" asp-route-id="@pie.PieId" >@pie.Name</a>
                         </h3>
                         <p>@pie.ShortDescription</p>
                         <h4 class="pull-right">Rs.@pie.Price</h4>
-                        
-                        @*<h5> Catagory: @pie.Category.CategoryName</h5>*@
                         
                     </div>
                     <br>

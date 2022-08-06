@@ -8,7 +8,6 @@
         {
             this.appDbContext = appDbContext;
         }
-
         public IEnumerable<Category> AllCategories => appDbContext.Categories;  
        
     }

@@ -22,7 +22,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+//builder.Services.AddScoped<ICartRepository, CartRepository>();
+
+builder.Services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+
+
 
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -42,6 +48,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 app.UseAuthentication();

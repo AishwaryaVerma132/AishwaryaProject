@@ -21,7 +21,7 @@
 					        <h3>
 						        <a asp-controller ="Pie" asp-action="Details" asp-route-id=@pie.PieId>@pie.Name</a>
 					        </h3>
-							@*<h6>Category: @pie.Category.CategoryName</h6>*@
+							<h6>Category: @pie.Category.CategoryName</h6>
 		
 					        <p>@pie.ShortDescription</p>
 							    
@@ -29,7 +29,12 @@
 						
 			        </div>
                 </div>
-
 	}
-	<a asp-action="Create">Create New Pie</a><br/>
+	<div>
+		<p class="button">
+      <a class="btn btn-primary" 
+         asp-controller="Pie" 
+         asp-action="Create">Create New Pies</a>
+   </p>
+	</div>
 </div>

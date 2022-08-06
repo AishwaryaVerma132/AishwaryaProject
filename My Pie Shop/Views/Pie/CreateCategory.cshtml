@@ -22,17 +22,26 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
+<br />
+<div>   
+   <p class="button">
+      <a class="btn btn-primary" 
+         asp-controller="Pie" 
+         asp-action="AllCategories">Back To Categories
+      </a>
+   </p>   
+</div>
+@*<div>
     <a asp-action="AllCategories">Back to Categories</a>
 </div>
-
+*@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -4,7 +4,7 @@
     ViewData["Title"] = "AllCategories";
 }
 
-<h1>AllCategories</h1>
+<h1>All Categories</h1>
 
 
 <table class="table">
@@ -45,6 +45,10 @@
 }
     </tbody>
 </table>
-<div>
-    <a asp-action="CreateCategory">Create New Category</a><br/>
+<div>    
+   <p class="button">
+      <a class="btn btn-primary" 
+         asp-controller="Pie" 
+         asp-action="CreateCategory">Create New Category</a>
+   </p>
 </div>

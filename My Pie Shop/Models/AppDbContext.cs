@@ -12,19 +12,14 @@ namespace My_Pie_Shop.Models
         }
         public DbSet<Category> Categories { get; set; }              //This DbSet is used to create the table in the database and the name of table will be Categories
         public DbSet<Pie> Pies { get; set; }                        //This DbSet is used to create the table in the database and the name of table will be Pies
-        public DbSet<Cart> Cart { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Cart>().HasData(new Cart 
-            {
-                CartId = 1 , 
-                OrderId = "aishwarya.verma2@globallogic.com" ,
-                PieId = 1,
-                PieName = "Apple Pie",
-                PiePrice = 560
-            });
 
             //seed categories
             modelBuilder.Entity<Category>().HasData(new Category { CategoryId = 1, CategoryName = "Fruit pies" , Description = "Fruit Pies"});

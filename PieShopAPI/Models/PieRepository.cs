@@ -10,15 +10,11 @@ namespace PieShopAPI.Models
         {
             this.appDbContext = appDbContext;
         }
+       
+        public IEnumerable<Pie> AllPies => appDbContext.Pies.Include(c => c.Category);
 
-
-        // All Pies Page
-        public IEnumerable<Pie> AllPies => appDbContext.Pies;
-
-        // Home Page
-        public IEnumerable<Pie> PiesOfTheWeek => appDbContext.Pies.Where(pie => pie.IsPieOfTheWeek);
-
-    
+        
+        public IEnumerable<Pie> PiesOfTheWeek => appDbContext.Pies.Where(pie => pie.IsPieOfTheWeek).Include(c=> c.Category);   
 
         public Pie DeletePie(int PieID)
         {

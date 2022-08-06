@@ -18,14 +18,11 @@ namespace My_Pie_Shop.Controllers
 
         private readonly IConfiguration configuration;
 
-        private readonly IHttpContextAccessor httpContextAccessor;
-
-        private readonly ICartRepository _cartRepository;
-
+        private readonly IHttpContextAccessor httpContextAccessor;        
 
         string baseAddress;
 
-        public PieController(IPieRepository pieRepository, IMapper mapper , IConfiguration configuration, ICategoryRepository categoryRepository, IHttpContextAccessor httpContextAccessor, ICartRepository cartRepository)
+        public PieController(IPieRepository pieRepository, IMapper mapper , IConfiguration configuration, ICategoryRepository categoryRepository, IHttpContextAccessor httpContextAccessor)
         {
             this._pieRepository = pieRepository;
             this.mapper = mapper;
@@ -33,7 +30,7 @@ namespace My_Pie_Shop.Controllers
             this.baseAddress = configuration.GetValue<string>("BaseAddress");
             this._categoryRepository = categoryRepository;
             this.httpContextAccessor = httpContextAccessor;
-            this._cartRepository = cartRepository;
+           // this._cartRepository = cartRepository;
         }
 
         private IEnumerable<Pie> GetAllPies()
@@ -48,8 +45,9 @@ namespace My_Pie_Shop.Controllers
 
             if (CategoryId > 0)
             {
-                pies = GetAllPies().Where(pie => pie.CategoryId == CategoryId);               
-                pieListViewModel.CurrentCategory = "Category";
+                pies = GetAllPies().Where(pie => pie.CategoryId == CategoryId);
+                pieListViewModel.CurrentCategory = pies.FirstOrDefault().Category.CategoryName;
+                pieListViewModel.CurrentCategory = pies.FirstOrDefault().Category.Description;
             }
             else
             {
@@ -81,7 +79,6 @@ namespace My_Pie_Shop.Controllers
             var GetPieById = PieAPIData.GetApiData(baseAddress + "List").Result.FirstOrDefault(p => p.PieId == id);
             return View(GetPieById);     
         }
-
 
         public async Task<IActionResult> ListAscending()
         {
@@ -116,7 +113,6 @@ namespace My_Pie_Shop.Controllers
             {
                 categoryItems.Add(new SelectListItem {Text = category.CategoryName, Value = category.CategoryId.ToString() });
             }
-
             ViewBag.categoryItems = categoryItems;
 
             return View();
@@ -165,7 +161,6 @@ namespace My_Pie_Shop.Controllers
             ViewBag.categoryItems = categoryItems;
             return View(pies);
         }
-
         public async Task<IActionResult> UpdatePie(Pie pie)
         {
             using (var httpClient = new HttpClient())
@@ -220,31 +215,6 @@ namespace My_Pie_Shop.Controllers
                 }
             }
             return RedirectToAction("AllCategories");
-        }
-
-        [Authorize]
-        public IActionResult AddToShoppingCart(int id)
-        {
-            var user = httpContextAccessor.HttpContext.User.Identity.Name;
-            var GetPie = _pieRepository.AllPies.FirstOrDefault(c => c.PieId == id);
-            var CartItems = _cartRepository.AllOrders.SingleOrDefault(u => u.OrderId == user && u.PieId == id);
-            if(CartItems == null)
-            {
-                CartItems = new Cart();
-                CartItems.PieId = GetPie.PieId;
-                CartItems.PieName = GetPie.Name;
-                CartItems.PiePrice = GetPie.Price;
-                CartItems.OrderId = user;
-                CartItems.Quantity = 1;
-               var Order = _cartRepository.AddOrder(CartItems);
-              
-            }
-            else
-            {
-                CartItems.Quantity++;
-                var Order = _cartRepository.UpdateOrder(CartItems);               
-            }
-            return RedirectToAction("List");
-        }
+        }        
     }
 }
