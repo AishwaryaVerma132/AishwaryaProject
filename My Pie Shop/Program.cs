@@ -23,9 +23,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
-//builder.Services.AddScoped<ICartRepository, CartRepository>();
-
 builder.Services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
 
 

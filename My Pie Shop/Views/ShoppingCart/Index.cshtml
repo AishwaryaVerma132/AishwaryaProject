@@ -15,7 +15,13 @@
     @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
     {
         <tr>
-            <td class="text-center">@line.Amount</td>
+            @*<td class="text-center">@line.Amount</td>*@
+            <td align="center">
+            <a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-pieId="@line.Pie.PieId">
+             <img src="~/images/minusIcon.png" width="25" height="25" /></a>  @line.Amount  
+             <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-pieId="@line.Pie.PieId">
+             <img src="~/images/addingIcon.png" width="25" height="25" /></a>
+             </td>
             <td class="text-left">@line.Pie.Name</td>
             <td class="text-right">Rs. @line.Pie.Price.ToString()</td>
             <td class="text-right"> Rs.
@@ -24,13 +30,7 @@
             <td>
                 <a  asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-pieId="@line.Pie.PieId">Remove Item</a>
             </td>
-            @*<td>
-                <div>
-                  <p class="button">
-                    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Buy Now</a>
-                  </p>
-                </div>
-            </td>*@
+            
         </tr>
     }
     </tbody>

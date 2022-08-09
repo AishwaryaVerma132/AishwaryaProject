@@ -16,8 +16,7 @@ namespace My_Pie_Shop.Models
 
         public static ShoppingCart GetCart(IServiceProvider services)
         {
-            ISession session = services.GetRequiredService<IHttpContextAccessor>()?
-                .HttpContext.Session;
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
 
             var context = services.GetService<AppDbContext>();
 
@@ -75,7 +74,6 @@ namespace My_Pie_Shop.Models
                     _appDbContext.ShoppingCartItems.Remove(shoppingCartItem);
                 }
             }
-
             _appDbContext.SaveChanges();
 
             return localAmount;

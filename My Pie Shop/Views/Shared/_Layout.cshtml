@@ -44,7 +44,9 @@
                         </li>
                         <li class="nav-item">
                             <h2><a class="nav-link text-light" asp-controller="ShoppingCart" asp-action="Index">View Cart</a></h2>
-                        </li>                                    
+                            @await Component.InvokeAsync("ShoppingCartSummary")
+                        </li>   
+                        
                         <li class="nav-item">
                             <partial name="_LoginPartial">
                         </li>
@@ -63,6 +65,7 @@
                            </ul>                       
                      </div>         
                     @await Component.InvokeAsync("CategoryMenu")
+                    
                     
                 </div>
             </div>

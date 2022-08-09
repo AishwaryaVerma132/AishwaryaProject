@@ -24,7 +24,6 @@ namespace My_Pie_Shop.Controllers
                 ShoppingCart = _shoppingCart,
                 ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
             };
-
             return View(shoppingCartViewModel);
         }
 
@@ -56,15 +55,5 @@ namespace My_Pie_Shop.Controllers
             _shoppingCart.ClearCart();
             return RedirectToAction("Index");
         }
-
-        /*public IActionResult OrderForm()
-        {
-            return View();
-        }
-
-        public IActionResult ConfirmOrder()
-        {
-            return View();
-        }*/
     }
 }
